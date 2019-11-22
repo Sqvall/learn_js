@@ -1,0 +1,12 @@
+let test = 5;
+console.log(test);
+++test;
+console.log(test);
+test++;
+console.log(test);
+test += 1;
+console.log(test);
+test *= 2;
+console.log(test);
+test /= 4;
+console.log(test);
