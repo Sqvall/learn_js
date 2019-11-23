@@ -1,0 +1,13 @@
+let myList = ["first", "2", 3];
+console.log(myList);
+myList = [];
+myList[5] = "four";
+console.log(myList);
+myList[0] = "1";
+myList[1] = 2;
+myList[2] = null;
+myList[3] = false;
+myList[4] = undefined;
+myList[6] = [1, 2];
+myList[8] = 'last';
+console.log(myList);
