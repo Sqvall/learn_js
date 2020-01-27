@@ -1,5 +1,5 @@
-let java = "Java";
-let script = "Script";
+const java = 'Java';
+const script = 'Script';
 console.log(java.length);
 console.log(script.length);
 let javascript = java + script;
