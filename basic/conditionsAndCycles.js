@@ -45,7 +45,7 @@ console.log();
 
 // for/of loop through the values of iterable objects (array)
 for (let i of arr) {
-    console.log(`for i of arr: ${i}`)
+  console.log(`for i of arr: ${i}`)
 }
 
 console.log();
@@ -53,7 +53,7 @@ console.log();
 // for/of loop through the values of iterable objects (string)
 let string = 'test string';
 for (let i of string) {
-    console.log(`for i of string: ${i}`)
+  console.log(`for i of string: ${i}`)
 }
 
 console.log();
