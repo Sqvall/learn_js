@@ -75,10 +75,10 @@ class VillageState {
 const first = new VillageState('Почта', [{ place: 'Почта', address: 'Дом Алисы' }]);
 const next = first.move('Дом Алисы');
 
-console.log(first.place);
-console.log(first.parcels);
-console.log(next.place);
-console.log(next.parcels);
+// console.log(first.place);
+// console.log(first.parcels);
+// console.log(next.place);
+// console.log(next.parcels);
 
 const runRobot = (state, robot, memory) => {
   for (let turn = 0; ; turn++) {
@@ -121,4 +121,66 @@ const routeRobot = (state, memory) => {
   return { direction: memory[0], memory: memory.slice(1) };
 };
 
-runRobot(VillageState.random(), routeRobot, []); // client code
+// runRobot(VillageState.random(), routeRobot, []); // client code
+
+const findRoute = (graph, from, to) => {
+  const work = [{ at: from, route: [] }];
+  for (let i = 0; i < work.length; i++) {
+    const { at, route } = work[i];
+    for (const place of graph[at]) {
+      if (place === to) return route.concat(place);
+      if (!work.some(w => w.at === place)) {
+        work.push({ at: place, route: route.concat(place) });
+      }
+    }
+  }
+};
+
+const goalOrientedRobot = ({ place, parcels }, route) => {
+  if (route.length === 0) {
+    const parcel = parcels[0];
+    if (parcel.place !== place) {
+      route = findRoute(roadGraph, place, parcel.place);
+    } else {
+      route = findRoute(roadGraph, place, parcel.address);
+    }
+  }
+  return { direction: route[0], memory: route.slice(1) };
+};
+
+// runRobot(VillageState.random(), goalOrientedRobot, []); // client code
+
+const compareRobots = (robot1, memory1, robot2, memory2) => {
+
+  // Rewrite run function
+  const runRobot = (state, robot, memory) => {
+    for (let turn = 0; ; turn++) {
+      if (state.parcels.length === 0) {
+        return turn; // Difference
+      }
+      const action = robot(state, memory);
+      state = state.move(action.direction);
+      memory = action.memory;
+    }
+  };
+
+  const results = [[], []];
+  // Running robots
+  for (let i = 0; i < 100; i++) {
+    const testParcelsSet = VillageState.random();
+    results[0].push(runRobot(testParcelsSet, robot1, memory1));
+    results[1].push(runRobot(testParcelsSet, robot2, memory2));
+  }
+  console.log(results);
+  // Averaging and comparing
+  const avg1 = results[0].reduce((a, b) => a + b, 0) / 100;
+  const avg2 = results[1].reduce((a, b) => a + b, 0) / 100;
+  console.log('Среднее кол-во попыток для', robot1.name, ':', avg1, '\nСреднее кол-во попыток для', robot2.name, ':', avg2);
+  if (avg1 === avg2) {
+    console.log('Среднее кол-во попыток для обоих роботов одинакого.');
+  } else {
+    console.log((avg1 > avg2 ? robot2.name : robot1.name), 'лучше.');
+  }
+};
+
+compareRobots(routeRobot, [], goalOrientedRobot, []);
