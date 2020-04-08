@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<p>Paragraph with btn
+    <button>btn0 or btn2 click</button>
+</p>
+<script>
+  let para = document.querySelector('p');
+  let button = document.querySelector('button');
+
+  para.addEventListener('mousedown', () => {
+    console.log('Обработчик для абзаца.');
+  });
+
+  button.addEventListener('mousedown', (event) => {
+    // event.stopPropagation останавнивает распространение события 'наружу' (всплытие).
+    console.log('Обработчик для кнопки.');
+    // event.button: 0 = левая кнопка мыши, 1 = среняя, 2 = правая
+    if (event.button === 2) event.stopPropagation();
+  });
+</script>
+</body>
+</html>
