@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <textarea>Введите здесь какой-нибудь текст...</textarea>
+    <div id="mousePosition"></div>
+</div>
+<script>
+  // CD for user input event called after 500 ms after user input last char
+  let textarea = document.querySelector('textarea');
+  let timeout;
+  textarea.addEventListener('input', () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => console.log('Текст введён!'), 500);
+  });
+
+  // Get target coordinate every 250 ms
+  let scheduled = null;
+  let target = document.getElementById('mousePosition');
+  window.addEventListener('mousemove', (event) => {
+    if (!scheduled) {
+      setTimeout(() => {
+        target.textContent = `Mouse at ${scheduled.pageX}, ${scheduled.pageY}`;
+        scheduled = null;
+      }, 250)
+    }
+    scheduled = event;
+  })
+</script>
+</body>
+</html>
