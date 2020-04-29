@@ -1,4 +1,1 @@
-const test = ['alsdasdf', 'asdfa', 'asdfas', 'asdf', 'asdfasdf', 'asdfasdf'];
-console.log(test.map(i => i));
-console.log(test.map(i => [...i]));
-console.log([...test]);
+console.log(Number('5') + 1);
