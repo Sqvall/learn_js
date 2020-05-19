@@ -1,4 +1,5 @@
-const { readFile, writeFile, readFileSync } = require('fs');
+const { readFile, writeFile, readFileSync, mkdir } = require('fs');
+const path = require('path');
 
 /** Simple read file */
 readFile('file.txt', 'utf8', (error, text) => {
@@ -23,3 +24,14 @@ writeFile('example_write.txt', 'This Node.js', error => {
 
 /** Simple sync read file */
 console.log('Sync file content:', readFileSync('file.txt', 'utf8'));
+
+/** Create new directory */
+mkdir(path.join(__dirname, 'test'), (error) => {
+  if (error) {
+    throw error;
+  } else {
+    console.log('Folder created');
+  }
+});
+
+// fs.appendFile(filePath, 'appending sting', err => {etc}) - append new text in already exists file
