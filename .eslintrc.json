@@ -19,10 +19,6 @@
     "@typescript-eslint"
   ],
   "rules": {
-    "semi": [
-      "warn",
-      "always"
-    ],
     "space-before-function-paren": 1,
     "object-curly-newline": ["error", {
         "ObjectExpression": { "consistent": true },

@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "big-integer": "^1.6.48",
     "prompts": "^2.3.0"
   },
   "devDependencies": {
