@@ -19,10 +19,6 @@
     "@typescript-eslint"
   ],
   "rules": {
-    "semi": [
-      "warn",
-      "always"
-    ],
     "space-before-function-paren": 1,
     "object-curly-newline": ["error", {
         "ObjectExpression": { "consistent": true },
@@ -33,10 +29,6 @@
     "camelcase": 0,
     "no-trailing-spaces": 0,
     "padded-blocks": 0,
-    "comma-dangle": [
-      "warn",
-      "always-multiline"
-    ],
     "spaced-comment": 0,
     "array-bracket-newline": [
       "error",

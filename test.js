@@ -1,6 +1,15 @@
-console.log(Number('5') + 1);
+function sayHi (person) {
+  const name = person.name
+  setTimeout(() => {
+    console.log('Hello, ' + name)
+  }, 3000)
+}
 
-const test = '234';
+let someone = { name: 'Dan' }
+sayHi(someone)
 
-console.log(typeof parseFloat(test));
-console.log(typeof test);
+someone = { name: 'Yuzhi' }
+sayHi(someone)
+
+someone = { name: 'Dominic' }
+sayHi(someone)
