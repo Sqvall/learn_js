@@ -1,15 +1,17 @@
-function sayHi (person) {
-  const name = person.name
-  setTimeout(() => {
-    console.log('Hello, ' + name)
-  }, 3000)
+const bigInt = require('big-integer')
+
+function getShortcodeFromTag (tag) {
+  let id = bigInt(tag.split('_', 1)[0])
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'
+  let shortcode = ''
+
+  while (id.greater(0)) {
+    const division = id.divmod(64)
+    id = division.quotient
+    shortcode = `${alphabet.charAt(division.remainder)}${shortcode}`
+  }
+
+  return shortcode
 }
 
-let someone = { name: 'Dan' }
-sayHi(someone)
-
-someone = { name: 'Yuzhi' }
-sayHi(someone)
-
-someone = { name: 'Dominic' }
-sayHi(someone)
+console.log(getShortcodeFromTag('stub!'))
